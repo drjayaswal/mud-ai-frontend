@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { toast } from "sonner";
 import { apiPost } from "@/lib/api";
 import { ResponseInterface } from "@/types/app.types";
+import Navbar from "@/components/Navbar";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -55,6 +56,7 @@ export default function Login() {
   };
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <Navbar />
       <AnimatedBackground />
       <div className="relative z-10 w-full max-w-xl mx-auto px-6">
         <div className="text-center mb-">

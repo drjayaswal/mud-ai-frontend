@@ -153,7 +153,7 @@ export default function Content({ user }: { user: SessionUser }) {
               </Card>
 
               {/* Disclaimer */}
-              <p className="text-xs text-gray-500 text-center mt-3 px-4">
+              <p className="text-[0.35rem] sm:text-[0.65rem] md:text-[0.95rem] text-gray-500 text-center mt-3 px-4">
                 This AI is not a substitute for professional advice. Use
                 discretion and verify all outputs.
               </p>

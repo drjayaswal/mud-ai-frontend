@@ -226,7 +226,6 @@ export const adjectives = [
   "zippy",
 ];
 export const navLinks = [
-  { href: "/", label: "Home", icon: Home },
   { href: "/mud-ai", label: "MudAi", icon: Brain },
   { href: "/connect", label: "Connect", icon: Users },
   { href: "/contact", label: "Contact", icon: Mail },
