@@ -157,66 +157,75 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.22 }}
-                className="absolute top-full left-2 right-2 mt-2 bg-white/30 backdrop-blur-md border-0 shadow-2xl rounded-4xl flex items-center py-2 z-50 ring-1 ring-white/10"
+                className="absolute top-full left-2 right-2 mt-2 bg-white border-0 shadow-2xl rounded-4xl flex flex-col items-stretch py-2 z-50 ring-1 ring-white/10 overflow-x-auto"
                 style={{
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
+                  maxWidth: "100vw",
                 }}
               >
-                {visibleLinks.map((link, index) => {
-                  if (link.label === "Login") {
-                    return (
-                      !session && (
+                <div className="flex flex-row flex-wrap items-center justify-center w-full gap-1 px-1 overflow-x-auto">
+                  {visibleLinks.map((link, index) => {
+                    if (link.label === "Login") {
+                      return (
+                        !session && (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={`flex flex-col items-center justify-center min-w-[72px] px-3 py-2 h-16 rounded-xl font-semibold text-xs text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
+                              index < visibleLinks.length - 1 ? "mb-1" : ""
+                            }`}
+                            style={{ maxWidth: "100vw" }}
+                          >
+                            {link.icon && (
+                              <link.icon className="h-7 w-7 flex-shrink-0 mb-1" />
+                            )}
+                            <span className="truncate">{link.label}</span>
+                          </Link>
+                        )
+                      );
+                    } else if (link.label === "LogOut") {
+                      return (
+                        session && (
+                          <button
+                            key={link.href}
+                            onClick={async () => {
+                              logout();
+                              redirect("/login");
+                            }}
+                            className={`flex flex-col items-center justify-center min-w-[72px] px-3 py-2 h-16 rounded-xl font-semibold text-xs text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
+                              index < visibleLinks.length - 1 ? "mb-1" : ""
+                            }`}
+                            style={{ maxWidth: "100vw" }}
+                          >
+                            {link.icon && (
+                              <link.icon className="h-7 w-7 flex-shrink-0 mb-1" />
+                            )}
+                            <span className="truncate">{link.label}</span>
+                          </button>
+                        )
+                      );
+                    } else {
+                      return (
                         <Link
                           key={link.href}
                           href={link.href}
                           onClick={() => setMobileOpen(false)}
-                          className={`flex gap-2 items-center w-full justify-center px-6 py-3 h-14 md:h-auto rounded-xl font-semibold text-base text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
+                          className={`flex flex-col items-center justify-center min-w-[72px] px-3 py-2 h-16 rounded-xl font-semibold text-xs text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
                             index < visibleLinks.length - 1 ? "mb-1" : ""
                           }`}
+                          style={{ maxWidth: "100vw" }}
                         >
                           {link.icon && (
-                            <link.icon className="h-7 w-7 md:h-5 md:w-5 flex-shrink-0" />
+                            <link.icon className="h-7 w-7 flex-shrink-0 mb-1" />
                           )}
+                          <span className="truncate">{link.label}</span>
                         </Link>
-                      )
-                    );
-                  } else if (link.label === "LogOut") {
-                    return (
-                      session && (
-                        <button
-                          key={link.href}
-                          onClick={async () => {
-                            logout();
-                            redirect("/login");
-                          }}
-                          className={`flex gap-2 items-center w-full justify-center px-6 py-3 h-14 md:h-auto rounded-xl font-semibold text-base text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
-                            index < visibleLinks.length - 1 ? "mb-1" : ""
-                          }`}
-                        >
-                          {link.icon && (
-                            <link.icon className="h-7 w-7 md:h-5 md:w-5 flex-shrink-0" />
-                          )}
-                        </button>
-                      )
-                    );
-                  } else {
-                    return (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`flex gap-2 items-center w-full justify-center px-6 py-3 rounded-xl font-semibold text-base text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
-                          index < visibleLinks.length - 1 ? "mb-1" : ""
-                        }`}
-                      >
-                        {link.icon && (
-                          <link.icon className="h-7 w-7 md:h-5 md:w-5 flex-shrink-0" />
-                        )}
-                      </Link>
-                    );
-                  }
-                })}
+                      );
+                    }
+                  })}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
