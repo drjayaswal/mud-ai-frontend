@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Orbit, Menu, X, ChevronDown } from "lucide-react";
+import { Orbit, X, ChevronDown } from "lucide-react";
 import { navLinks } from "@/lib/const";
 import { getSession, logout } from "@/lib/service";
 import { redirect } from "next/navigation";

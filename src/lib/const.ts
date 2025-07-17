@@ -6,7 +6,6 @@ import {
   LogIn,
   LogOut,
   Settings,
-  Home,
 } from "lucide-react";
 
 export const nouns = [
