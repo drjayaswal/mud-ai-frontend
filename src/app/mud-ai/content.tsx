@@ -4,44 +4,20 @@ import type React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/button";
 import { Card } from "@/components/card";
 import { Input } from "@/components/input";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import {
-  CircleX,
-  Eye,
-  File,
-  Files,
-  Search,
-  Send,
-  SendHorizontal,
-  Upload,
-} from "lucide-react";
+import { Search, Send, SendHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-interface AttachmentFile {
-  id: string;
-  name: string;
-  mime: string;
-  url: string;
-  size: number;
-  created_at: Date;
-}
-
-interface SessionUser {
-  id: string;
-  name: string;
-  email: string;
-}
+import { SessionUser } from "@/types/app.types";
 
 export default function Content({ user }: { user: SessionUser }) {
   const [prompt, setPrompt] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [hasProcessedUrlQuery, setHasProcessedUrlQuery] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -101,7 +77,6 @@ export default function Content({ user }: { user: SessionUser }) {
           <AnimatedBackground />
         </div>
 
-        {/* Debug user info - remove in production */}
         {user && typeof user === "object" && (
           <pre className="text-xs p-4 bg-gray-100 m-4 rounded overflow-auto">
             {JSON.stringify(user, null, 2)}

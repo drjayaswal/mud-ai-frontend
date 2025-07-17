@@ -17,7 +17,7 @@ export default function MudAi() {
       if (!userSession) {
         redirect("/login");
       } else {
-        setUser(userSession);
+        setUser(userSession as SessionUser);
         setLoading(false);
       }
     };
