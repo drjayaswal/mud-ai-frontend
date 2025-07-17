@@ -55,26 +55,26 @@ export default function Login() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-2 sm:px-0">
       <Navbar />
       <AnimatedBackground />
-      <div className="relative z-10 w-full max-w-xl mx-auto px-6">
-        <div className="text-center mb-">
-          <h1 className="text-6xl font-bold bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600 bg-clip-text text-transparent">
+      <div className="relative z-10 w-full max-w-xl mx-auto px-2 sm:px-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600 bg-clip-text text-transparent">
             Welcome to MudAi
           </h1>
-          <p className="text-gray-600 text-xl font-extralight mt-2">
+          <p className="text-gray-600 text-base sm:text-lg md:text-xl font-extralight mt-2">
             Continue to your account
           </p>
         </div>
-        <div className="p-8">
+        <div className="p-4 sm:p-8">
           <form className="space-y-4" onSubmit={handleLogin}>
             <Input
               type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="rounded-xl focus-visible:ring-0 focus-visible:border-gray-500 border-0 shadow-none focus-visible:shadow"
+              className="rounded-xl focus-visible:ring-0 focus-visible:border-gray-500 border-0 shadow-none focus-visible:shadow text-sm sm:text-base"
               required
             />
             <Input
@@ -82,7 +82,7 @@ export default function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="rounded-xl focus-visible:ring-0 focus-visible:border-gray-500 border-0 shadow-none focus-visible:shadow"
+              className="rounded-xl focus-visible:ring-0 focus-visible:border-gray-500 border-0 shadow-none focus-visible:shadow text-sm sm:text-base"
               required
             />
             <Input
@@ -90,20 +90,20 @@ export default function Login() {
               placeholder="Unique Code"
               value={ucode}
               onChange={(e) => setUcode(e.target.value)}
-              className="rounded-xl focus-visible:ring-0 focus-visible:border-gray-500 border-0 shadow-none focus-visible:shadow"
+              className="rounded-xl focus-visible:ring-0 focus-visible:border-gray-500 border-0 shadow-none focus-visible:shadow text-sm sm:text-base"
               required
             />
             <Button
               type="submit"
-              className="w-full h-12 bg-gradient-to-r from-transparent via-gray-200 to-transparent hover:from-transparent hover:to-transparent hover:via-gray-800 text-black hover:text-white font-semibold rounded-3xl transition-all duration-200 transform hover:scale-105 shadow-none hover:shadow-xl flex items-center justify-center gap-3 cursor-pointer"
+              className="w-full h-10 sm:h-12 bg-gradient-to-r from-transparent via-gray-200 to-transparent hover:from-transparent hover:to-transparent hover:via-gray-800 text-black hover:text-white font-semibold rounded-3xl transition-all duration-200 transform hover:scale-105 shadow-none hover:shadow-xl flex items-center justify-center gap-3 cursor-pointer text-base sm:text-lg"
               size="lg"
               disabled={loading}
             >
               {loading ? "Signing in..." : "Continue"}
             </Button>
           </form>
-          <div className="mt-8 text-center">
-            <p className="text-sm font-light text-gray-500">
+          <div className="mt-6 sm:mt-8 text-center">
+            <p className="text-xs sm:text-sm font-light text-gray-500">
               ...by continuing, you agree to our{" "}
               <a
                 href="#"
