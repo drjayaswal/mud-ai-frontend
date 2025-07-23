@@ -57,7 +57,7 @@ export async function middleware(
       response.cookies.set({
         name: "session",
         value: newSessionToken,
-        httpOnly: true,
+        httpOnly: false,
         expires: newExpiry,
         path: "/", // Ensure cookie is available to all routes
         sameSite: "none",
