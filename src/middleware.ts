@@ -60,8 +60,7 @@ export async function middleware(
         httpOnly: true,
         expires: newExpiry,
         path: "/", // Ensure cookie is available to all routes
-        sameSite:
-          process.env.FRONTEND_BACKEND_CROSS_DOMAIN === "true" ? "none" : "lax",
+        sameSite: "none",
         secure: true, // Required for sameSite: "none"
       });
 
