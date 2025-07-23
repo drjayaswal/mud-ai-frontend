@@ -2,13 +2,14 @@ export async function apiGet<T>(
   url: string,
   options?: RequestInit
 ): Promise<T> {
-  const response = await fetch(url, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${url}`, {
     ...options,
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       ...(options?.headers || {}),
     },
+    credentials: "include",
   });
   if (!response.ok) {
     throw new Error(
@@ -32,6 +33,7 @@ export async function apiPost<T>(
         "Content-Type": "application/json",
         ...(options?.headers || {}),
       },
+      credentials: "include",
       body: data ? JSON.stringify(data) : undefined,
     }
   );

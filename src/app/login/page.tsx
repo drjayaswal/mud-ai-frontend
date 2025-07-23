@@ -23,7 +23,7 @@ export default function Login() {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("unode", ucode);
-    const response: ResponseInterface = await apiPost("user/create", {
+    const response: ResponseInterface = await apiPost("auth/create", {
       username,
       password,
       ucode,
@@ -34,7 +34,7 @@ export default function Login() {
       setLoading(false);
       redirect("/");
     } else if (!response.success && response.code === 409) {
-      const loginRes: ResponseInterface = await apiPost("user/login", {
+      const loginRes: ResponseInterface = await apiPost("auth/login", {
         username,
         password,
       });

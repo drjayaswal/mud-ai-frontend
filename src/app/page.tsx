@@ -1,9 +1,9 @@
 "use client";
+
 import { motion, easeOut } from "framer-motion";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
-import { Globe } from "@/components/globe";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
@@ -16,7 +16,6 @@ export default function Home() {
       },
     },
   };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -56,8 +55,6 @@ export default function Home() {
               <motion.div variants={itemVariants}>
                 <SearchBar onSearch={handleSearch} />
               </motion.div>
-
-              <Globe className="mt-20" />
             </motion.div>
           </div>
         </section>

@@ -291,7 +291,7 @@ export default function SearchBar({
             ref={inputRef}
             type="text"
             placeholder={placeholder}
-            className={`w-full h-20 pl-16 pr-40 text-lg font-medium bg-transparent ${
+            className={`w-full h-20 px-15 text-lg font-medium bg-transparent ${
               isFocused && "bg-white border-0"
             } rounded-full border-none outline-none placeholder:text-gray-400 text-gray-800 transition-all duration-300`}
             value={searchQuery}

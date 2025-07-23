@@ -46,7 +46,7 @@ export async function middleware(
       const updatedSession = { ...sessionData } as Record<string, unknown>;
 
       // Set the new expiration time to 1 minute from now (sliding expiration)
-      const newExpiry = new Date(Date.now() + 60 * 1000);
+      const newExpiry = new Date(Date.now() + 60 * 60 * 1000);
       updatedSession.expires = newExpiry;
 
       // Encrypt the updated session object

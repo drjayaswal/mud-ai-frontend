@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import "../components/Loader.css";
 import "./globals.css";
 import Head from "next/head";
 import { Toaster } from "sonner";
@@ -15,9 +16,9 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <Head>

@@ -9,7 +9,6 @@ import { getSession, logout } from "@/lib/service";
 import { redirect } from "next/navigation";
 
 export default function Navbar() {
-  const [detached, setDetached] = useState(false);
   const [session, setSession] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -19,12 +18,6 @@ export default function Navbar() {
       setSession(sess as string);
     };
     fetchSession();
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setDetached(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -39,18 +32,14 @@ export default function Navbar() {
     }
   }, [mobileOpen]);
 
-  const visibleLinks = detached ? navLinks.slice(0, 4) : navLinks;
-
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 pt-4">
       <AnimatePresence>
         <motion.nav
           initial={false}
           animate={{
-            borderRadius: detached ? 16 : 24,
-            background: detached
-              ? "rgba(255,255,255,0.95)"
-              : "rgba(255,255,255,0.85)",
+            borderRadius: 54,
+            background: "rgba(255,255,255,0.95)",
             boxShadow: "0 6px 32px 0 rgba(107, 114, 128, 0.18)",
           }}
           transition={{
@@ -64,19 +53,13 @@ export default function Navbar() {
             WebkitBackdropFilter: "blur(16px)",
           }}
         >
-          {/* Logo */}
-          <div
-            className="mr-3 flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 cursor-pointer bg-gradient-to-br from-transparent to-transparent via-gray-500 hover:from-gray-500 hover:via-gray-500/80 hover:to-gray-500 transition-colors duration-300 rounded-full shadow-lg flex-shrink-0"
-            onClick={() => {
-              redirect("/");
-            }}
-          >
-            <Orbit className="transition-all duration-300 hover:rotate-45 text-white w-5 h-5 sm:w-6 sm:h-6" />
+          {/* Show Orbit only on mobile (md and below) */}
+          <div className="flex md:hidden ml-2">
+            <Orbit />
           </div>
-
           {/* Desktop Nav Links */}
           <div className="hidden md:flex flex-1 items-center justify-between gap-1 lg:gap-2">
-            {visibleLinks.map((link) => {
+            {navLinks.map((link) => {
               if (link.label === "Login") {
                 return (
                   !session && (
@@ -138,15 +121,30 @@ export default function Navbar() {
 
           {/* Hamburger for Mobile */}
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-200/60 hover:bg-gray-300/80 transition-colors duration-200 flex-shrink-0"
+            className="md:hidden flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/80 hover:bg-gray-300/80 transition-all duration-300 flex-shrink-0 shadow-none active:scale-95"
             onClick={() => setMobileOpen((open) => !open)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            {mobileOpen ? (
-              <X className="w-5 h-5 sm:w-6 sm:h-6" />
-            ) : (
-              <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6" />
-            )}
+            <span className="relative flex items-center justify-center w-full h-full">
+              <span
+                className={`absolute inset-0 rounded-full scale-110 transition-all duration-300 ${
+                  mobileOpen ? "opacity-100" : "opacity-0"
+                }`}
+              />
+              <span
+                className={`transition-transform duration-500 ease-in-out ${
+                  mobileOpen
+                    ? "rotate-[360deg] scale-110 text-red-500"
+                    : "rotate-0 scale-100 text-gray-700"
+                }`}
+              >
+                {mobileOpen ? (
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300" />
+                )}
+              </span>
+            </span>
           </button>
 
           {/* Mobile Nav Links */}
@@ -165,7 +163,7 @@ export default function Navbar() {
                 }}
               >
                 <div className="flex flex-row flex-wrap items-center justify-center w-full gap-1 px-1 overflow-x-auto">
-                  {visibleLinks.map((link, index) => {
+                  {navLinks.map((link, index) => {
                     if (link.label === "Login") {
                       return (
                         !session && (
@@ -174,7 +172,7 @@ export default function Navbar() {
                             href={link.href}
                             onClick={() => setMobileOpen(false)}
                             className={`flex flex-col items-center justify-center min-w-[72px] px-3 py-2 h-16 rounded-xl font-semibold text-xs text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
-                              index < visibleLinks.length - 1 ? "mb-1" : ""
+                              index < navLinks.length - 1 ? "mb-1" : ""
                             }`}
                             style={{ maxWidth: "100vw" }}
                           >
@@ -195,7 +193,7 @@ export default function Navbar() {
                               redirect("/login");
                             }}
                             className={`flex flex-col items-center justify-center min-w-[72px] px-3 py-2 h-16 rounded-xl font-semibold text-xs text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
-                              index < visibleLinks.length - 1 ? "mb-1" : ""
+                              index < navLinks.length - 1 ? "mb-1" : ""
                             }`}
                             style={{ maxWidth: "100vw" }}
                           >
@@ -213,7 +211,7 @@ export default function Navbar() {
                           href={link.href}
                           onClick={() => setMobileOpen(false)}
                           className={`flex flex-col items-center justify-center min-w-[72px] px-3 py-2 h-16 rounded-xl font-semibold text-xs text-gray-500/70 hover:text-gray-900 transition-colors duration-200 ${
-                            index < visibleLinks.length - 1 ? "mb-1" : ""
+                            index < navLinks.length - 1 ? "mb-1" : ""
                           }`}
                           style={{ maxWidth: "100vw" }}
                         >

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="fixed bottom-0 left-0 right-0 z-50 w-full px-6 py-2 text-sm text-gray-500/40 bg-transparent flex items-center justify-between">
       <div className="flex items-center gap-2">
         <Link href="/">
-          <Home className="w-7 h-7 text-gray-500/40 hover:text-gray-500 transition-colors duration-300" />
+          <Home className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 text-gray-500/40 hover:text-gray-500 transition-colors duration-300" />
         </Link>
       </div>
       <div className="flex items-center gap-4">
@@ -18,7 +18,7 @@ export default function Footer() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8"
+            className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
@@ -37,7 +37,7 @@ export default function Footer() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
+            className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
