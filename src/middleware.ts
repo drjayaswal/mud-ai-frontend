@@ -45,8 +45,8 @@ export async function middleware(
       // Clone the session object to avoid mutating the original
       const updatedSession = { ...sessionData } as Record<string, unknown>;
 
-      // Set the new expiration time to 1 minute from now (sliding expiration)
-      const newExpiry = new Date(Date.now() + 60 * 60 * 1000);
+      // Set the new expiration time to 1 hour from now (sliding expiration)
+      const newExpiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
       updatedSession.expires = newExpiry;
 
       // Encrypt the updated session object
@@ -60,12 +60,9 @@ export async function middleware(
         httpOnly: true,
         expires: newExpiry,
         path: "/", // Ensure cookie is available to all routes
-        // If your frontend and backend are on different domains, you may need:
-        // sameSite: "none", secure: true, and possibly set the domain explicitly.
         sameSite:
           process.env.FRONTEND_BACKEND_CROSS_DOMAIN === "true" ? "none" : "lax",
         secure: true, // Required for sameSite: "none"
-        // domain: ".yourdomain.com", // Uncomment and set if you have a shared parent domain
       });
 
       return response;
